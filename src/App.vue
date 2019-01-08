@@ -43,6 +43,9 @@
               </span>
                 <p class="grey-text text-darken-4">{{ item.subtitle }}</p>
                 <span class="grey-text text-darken-5">更新时间：{{ new Date(item.lastUpdate).toLocaleString() }}</span>
+                <span>
+                    <a class="btn-flat" v-on:click="remove(index)"><i class="material-icons left">delete</i>删除</a>
+                </span>
                 <div class="card-action">
                   <a class="waves-effect waves-ripple btn-flat right grey-text text-darken-4" v-if="item.lastUpdate > item.lastCheck"
                      v-on:click="check(index, Date.parse(new Date()))"
@@ -171,6 +174,14 @@
       check: function(index, date) {
         this.items[index].lastCheck = date
       },
+      remove: function (index) {
+          delete this.items[index]
+          for(var i=index;i<this.items.length;i++)
+          {
+            this.items[i]=this.items[i+1]
+          }
+          this.items.pop()
+      },
       slice_page_items: function() {
         let start = this.current_index * this.page_limit;
         let end = (this.current_index + 1) * this.page_limit
@@ -239,7 +250,7 @@
   }
 
   .card-content {
-    max-width: 80%;
+    max-width: 100%;
   }
 
 </style>
