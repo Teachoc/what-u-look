@@ -175,12 +175,7 @@
         this.items[index].lastCheck = date
       },
       remove: function (index) {
-          delete this.items[index]
-          for(var i=index;i<this.items.length;i++)
-          {
-            this.items[i]=this.items[i+1]
-          }
-          this.items.pop()
+        this.items.splice(index,1)
       },
       slice_page_items: function() {
         let start = this.current_index * this.page_limit;
