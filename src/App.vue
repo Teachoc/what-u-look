@@ -38,9 +38,11 @@
             <div class="card-stacked">
 
               <div class="card-content">
-              <span class="card-title grey-text text-darken-4">
-                {{ item.title }}
-              </span>
+              <a :href="item.link" target="_blank">
+                <span class="card-title grey-text text-darken-4">
+                  {{ item.title }}
+                </span>
+              </a>
                 <p class="grey-text text-darken-4">{{ item.subtitle }}</p>
                 <span class="grey-text text-darken-5">更新时间：{{ new Date(item.lastUpdate).toLocaleString() }}</span>
                 <span>
