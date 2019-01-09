@@ -6,8 +6,8 @@
         <a href="#" class="brand-logo">{{ "" + title }}</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="side-nav" id="mobile-demo">
-          <li v-for="menu in menus">
-            <a :href="menu.link">{{ menu.text }}</a>
+          <li v-bind:key=menu.text v-for="menu in menus">
+            <a  :href="menu.link">{{ menu.text }}</a>
           </li>
         </ul>
       </div>
@@ -30,7 +30,7 @@
     <!-- List -->
     <div class="container">
       <div class="row">
-        <div class="col s12 m6" v-for="(item, index) in items">
+        <div class="col s12 m6" v-bind:key=item.id v-for="(item, index) in items">
           <div class="small card hoverable horizontal">
             <div class="card-image hide-on-small-only">
               <img class="itempic" referrerpolicy="no-referrer" :src="item.pic">
@@ -84,7 +84,7 @@
           </div>
           <div class="col l4 offset-l2 s12">
             <h5 class="white-text">相关链接</h5>
-            <ul><li v-for="menu in menus"><a class="grey-text text-lighten-3" :href="menu.link">{{ menu.text }}</a></li></ul>
+            <ul><li v-bind:key=menu.text v-for="menu in menus"><a class="grey-text text-lighten-3" :href="menu.link">{{ menu.text }}</a></li></ul>
           </div>
         </div>
       </div>
@@ -106,7 +106,6 @@
       HeaderCardContent,
       AddButton
     },
-    el: '#app',
     mounted() {
       if (localStorage.getItem('items')) {
         this.items = JSON.parse(localStorage.getItem('items'))
@@ -175,6 +174,7 @@
       },
       check: function(index, date) {
         this.items[index].lastCheck = date
+        localStorage.setItem('items', JSON.stringify(this.items))
       },
       remove: function (index) {
         this.items.splice(index,1)
