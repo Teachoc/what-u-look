@@ -38,24 +38,30 @@
             <div class="card-stacked">
 
               <div class="card-content">
-              <a :href="item.link" target="_blank">
-                <span class="card-title grey-text text-darken-4">
-                  {{ item.title }}
+                <span class="card-title">
+                  <a class="grey-text text-darken-4" :href="item.link" target="_blank">
+                    <span>
+                      {{ item.title }}
+                    </span>
+                  </a>
+                  <a class="grey-text text-darken-4" :href="item.linkApp">
+                    <i class="material-icons right">devices</i>
+                  </a>
                 </span>
-              </a>
-                <p class="grey-text text-darken-4">{{ item.subtitle }}</p>
+                  <p class="grey-text text-darken-4">{{ item.subtitle }}</p>
                 <span class="grey-text text-darken-5">更新时间：{{ new Date(item.lastUpdate).toLocaleString() }}</span>
-                <span>
-                    <a class="btn-flat" v-on:click="remove(index)"><i class="material-icons left">delete</i>删除</a>
-                </span>
                 <div class="card-action">
-                  <a class="waves-effect waves-ripple btn-flat right grey-text text-darken-4" v-if="item.lastUpdate > item.lastCheck"
+                      <a class="waves-effect waves-ripple btn-flat grey-text text-darken-4" v-on:click="remove(index)">
+                        <i class="material-icons left">delete</i>删除
+                      </a>
+                  <a class="waves-effect waves-ripple btn-flat right grey-text text-darken-4"
+                     v-if="item.lastUpdate > item.lastCheck"
                      v-on:click="check(index, Date.parse(new Date()))"
                   >
                     <i class="material-icons left">hourglass_empty</i>本周未观看
                   </a>
-                  <a class="waves-effect waves-ripple btn-flat right grey-text text-darken-4" v-else
-                     v-on:click="check(index, 0)"
+                  <a class="waves-effect waves-ripple btn-flat right grey-text text-darken-4"
+                     v-else v-on:click="check(index, 0)"
                   >
                     <i class="material-icons left">check</i>本周已观看
                   </a>
@@ -226,7 +232,8 @@
     background-size:cover
   }
   .container {
-    margin-top: 16px
+    margin-top: 16px;
+    width: 95%;
   }
   .finish-icon-container {
     font-size: 1rem;

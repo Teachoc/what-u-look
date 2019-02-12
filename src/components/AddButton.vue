@@ -67,7 +67,8 @@
                         subtitle: feed.items[0].title,
                         lastUpdate: Date.parse(feed.items[0].pubDate),
                         lastCheck: 0,
-                        link: feed.link,
+                        link: "https:\/\/www.bilibili.com\/bangumi\/play\/ss"+json.result[0].season_id,
+                        linkApp: "bilibili://bangumi/season/"+json.result[0].season_id,
                         pic: json.result[0].cover
                     };
                     this.items.push(item)
